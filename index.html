@@ -1,0 +1,513 @@
+* {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+    }
+
+    body {
+        font-family: 'Tajawal', sans-serif;
+        background: var(--bg-dark);
+        color: #ffffff;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Ambient Background Effect */
+    .ambient-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        background: 
+            radial-gradient(circle at 15% 20%, rgba(255, 77, 141, 0.15) 0%, transparent 45%),
+            radial-gradient(circle at 85% 80%, rgba(123, 44, 191, 0.15) 0%, transparent 45%),
+            radial-gradient(circle at 50% 50%, rgba(255, 117, 140, 0.08) 0%, transparent 60%);
+    }
+
+    /* Floating Hearts Canvas */
+    #hearts-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Music Player Header */
+    .music-bar {
+        background: rgba(20, 15, 35, 0.85);
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--card-border);
+        border-radius: 50px;
+        padding: 12px 25px;
+        margin: 15px auto 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        max-width: 650px;
+    }
+
+    .music-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .music-icon {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 141, 0.4); }
+        70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(255, 77, 141, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 141, 0); }
+    }
+
+    .music-btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border: none;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+    .music-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 77, 141, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+        text-align: center;
+        padding: 40px 10px;
+    }
+
+    .badge {
+        display: inline-block;
+        background: rgba(255, 77, 141, 0.15);
+        border: 1px solid var(--primary);
+        color: var(--accent);
+        padding: 6px 20px;
+        border-radius: 30px;
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
+    .main-title {
+        font-family: 'Amiri', serif;
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ffffff 0%, #ffb3c1 50%, #ff4d8d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 30px;
+    }
+
+    /* Interactive Surprise Button */
+    .surprise-btn {
+        background: linear-gradient(135deg, #ff4d8d, #7b2cbf);
+        border: none;
+        color: white;
+        padding: 16px 40px;
+        font-size: 1.2rem;
+        font-weight: 800;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(255, 77, 141, 0.4);
+        transition: all 0.4s ease;
+        font-family: inherit;
+        position: relative;
+overflow: hidden;
+    }
+
+    .surprise-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 77, 141, 0.6);
+    }
+
+    /* Glass Cards General */
+    .glass-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--card-border);
+        border-radius: 24px;
+        padding: 30px;
+        margin-bottom: 35px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    /* Romantic Letter Section */
+    .letter-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 77, 141, 0.04) 100%);
+        position: relative;
+    }
+
+    .letter-card::before {
+        content: '💌';
+        position: absolute;
+        top: -20px;
+        right: 30px;
+        font-size: 2.5rem;
+    }
+
+    .letter-title {
+        font-family: 'Amiri', serif;
+        font-size: 1.8rem;
+        color: var(--text-gold);
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 230, 167, 0.2);
+        padding-bottom: 10px;
+    }
+
+    .letter-body {
+        font-size: 1.15rem;
+        line-height: 2;
+        color: #f1f1f1;
+        text-align: justify;
+        white-space: pre-line;
+    }
+
+    .signature {
+        text-align: left;
+        margin-top: 25px;
+        font-family: 'Amiri', serif;
+        font-size: 1.4rem;
+        color: var(--accent);
+        font-weight: bold;
+    }
+
+    /* Video & Media Section */
+    .media-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .media-container {
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--card-border);
+        background: #000;
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    video, img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 20px;
+    }
+
+    /* Media Upload Controls */
+    .upload-controls {
+        margin-top: 15px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .file-upload-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px dashed var(--accent);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+
+    .file-upload-btn:hover {
+        background: rgba(255, 77, 141, 0.2);
+    }
+
+    /* Photo Gallery */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .gallery-item {
+        height: 220px;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--card-border);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.08);
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 30px 10px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.95rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .main-title { font-size: 2.2rem; }
+        .glass-card { padding: 20px; }
+        .music-bar { flex-direction: column; gap: 12px; text-align: center; }
+    }
+</style>
+<div class="ambient-bg"></div>
+<canvas id="hearts-canvas"></canvas>
+
+<div class="container">
+    
+    <!-- Audio Bar -->
+    <div class="music-bar">
+        <div class="music-info">
+            <div class="music-icon">🎵</div>
+            <div>
+                <div style="font-weight: 700; font-size: 1rem;">أغنيتنا الخاصة 💖</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);" id="song-title">حبيبة روحي وقرة عيني</div>
+            </div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+<button class="music-btn" onclick="toggleAudio()" id="play-btn">تشغيل ◀️</button>
+            <label class="file-upload-btn">
+                تغيير الأغنية 📁
+                <input type="file" id="audio-input" accept="audio/*" style="display: none;" onchange="loadCustomAudio(event)">
+            </label>
+        </div>
+        <audio id="bg-music" loop>
+            <!-- رابط افتراضي قابل للتغيير -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="badge">إهداء خاص للغالية على قلبي ✨</span>
+        <h1 class="main-title">أنتِ عيدي وكل أسبابي للحب ❤️</h1>
+        <p class="subtitle">صنعتُ لكِ هذا المكان الصغير ليعبّر لكِ عن بعض ما يكنّه قلبي.. كل عام وأنتِ بقلبي وفي أوردتي.</p>
+        <button class="surprise-btn" onclick="triggerSurprise()">اضغطي هنا لمفاجأة! ✨</button>
+    </section>
+
+    <!-- Letter Card -->
+    <div class="glass-card letter-card">
+        <h2 class="letter-title">إلى حبيبتي، ورفيقة روحي، وسرّ سعادتي..</h2>
+        <div class="letter-body">
+    <!-- Video Section -->
+    <div class="glass-card">
+        <h3 style="margin-bottom: 15px; color: var(--accent);">🎥 فيديو أذكارنا وفرحتنا معاُ</h3>
+        <div class="media-container">
+            <video id="main-video" controls poster="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1200&q=80">
+                <source src="" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+        <div class="upload-controls">
+            <label class="file-upload-btn">
+                رفع فيديو خاص بنا 🎬
+                <input type="file" accept="video/*" style="display: none;" onchange="loadCustomVideo(event)">
+            </label>
+        </div>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="glass-card">
+        <h3 style="margin-bottom: 15px; color: var(--accent);">📸 معرض أروع اللحظات</h3>
+        <div class="gallery-grid" id="gallery">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="لحظة جميلة"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="لحظة جميلة"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=600&q=80" alt="لحظة جميلة"></div>
+        </div>
+        <div class="upload-controls">
+            <label class="file-upload-btn">
+                إضافة/تغيير صور المعرض 🖼️
+                <input type="file" accept="image/*" multiple style="display: none;" onchange="loadCustomPhotos(event)">
+            </label>
+        </div>
+    </div>
+
+    <footer>
+        مصنوع بـ ❤️ من أجلكِ فقط | 2026
+    </footer>
+
+</div>
+
+<script>
+    // Audio Player Controls
+    const music = document.getElementById('bg-music');
+    const playBtn = document.getElementById('play-btn');
+
+    function toggleAudio() {
+        if (music.paused) {
+            music.play();
+playBtn.innerText = 'إيقاف ⏸️';
+        } else {
+            music.pause();
+            playBtn.innerText = 'تشغيل ◀️';
+        }
+    }
+
+    function loadCustomAudio(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            music.src = url;
+            document.getElementById('song-title').innerText = file.name;
+            music.play();
+            playBtn.innerText = 'إيقاف ⏸️';
+        }
+    }
+
+    // Custom Video Upload
+    function loadCustomVideo(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const video = document.getElementById('main-video');
+            video.src = URL.createObjectURL(file);
+            video.play();
+        }
+    }
+
+    // Custom Photos Upload
+    function loadCustomPhotos(event) {
+        const files = event.target.files;
+        if (files.length > 0) {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+            Array.from(files).forEach(file => {
+                const url = URL.createObjectURL(file);
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `<img src="${url}" alt="صورة خاصة">`;
+                gallery.appendChild(item);
+            });
+        }
+    }
+
+    // Confetti & Hearts Surprise
+    function triggerSurprise() {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ff4d8d', '#ff758c', '#ffe6a7', '#ffffff']
+        });
+
+        alert('أحبكِ جداً يا كل أعيادي وأجمل أقداري! 💖✨');
+    }
+
+    // Floating Hearts Canvas Animation
+    const canvas = document.getElementById('hearts-canvas');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Heart {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height + 20;
+            this.size = Math.random() * 15 + 8;
+            this.speed = Math.random() * 1.5 + 0.5;
+            this.opacity = Math.random() * 0.5 + 0.3;
+            this.swing = Math.random() * 0.02;
+            this.angle = Math.random() * Math.PI * 2;
+        }
+
+        update() {
+            this.y -= this.speed;
+            this.angle += this.swing;
+            this.x += Math.sin(this.angle) * 0.5;
+            if (this.y < -20) this.reset();
+        }
+
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = '#ff4d8d';
+            ctx.beginPath();
+            const topCurveHeight = this.size * 0.3;
+            ctx.moveTo(this.x, this.y + topCurveHeight);
+            ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
+            ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
+            ctx.bezierCurveTo(this.x, this.y + this.size, this.x + this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this.y + topCurveHeight);
+            ctx.bezierCurveTo(this.x + this.size / 2, this.y, this.x, this.y, this.x, this.y + topCurveHeight);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    for (let i = 0; i < 25; i++) {
+        hearts.push(new Heart());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        hearts.forEach(heart => {
+            heart.update();
+            heart.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
